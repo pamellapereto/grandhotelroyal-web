@@ -17,5 +17,8 @@
     "react"
   ],
   "author": "Pamella Pereto",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
 }
