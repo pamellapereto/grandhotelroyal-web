@@ -1,5 +1,11 @@
 input {
     border-style: solid;
-    border-color: rgb(136, 23, 66);
+    border-color: rgb(117, 171, 233);
     border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 65, 136);
+    border-color: rgb(3, 65, 136);
 }
