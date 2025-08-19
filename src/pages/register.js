@@ -32,9 +32,9 @@ export default function renderRegisterPage() {
     confSenha.placeholder = "Confirme sua senha";
 
     /*Adicionar confSenha como "child" de form que já contém
-        4 elementos: input nome[0], input email[1], input password[2],
-        button btn[3], ao adicionar conftSenha antes de btn[3], portanto
-        utilizar insertBefore() e identificar a posição de btn[3] como uma
+        4 elementos: input nome[0] recém adicionado, input email[1],
+        input password[2], button btn[3], ao adicionar confSenha antes de btn[3],
+        portanto utilizar insertBefore() e identificar a posição de btn[3] como uma
         "child" do elemento pai form
     */
     contentForm.insertBefore(confSenha, contentForm.children[3]);
