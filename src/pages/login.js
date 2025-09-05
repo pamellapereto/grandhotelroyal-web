@@ -1,3 +1,4 @@
+import { loginRequest } from "../api/authAPI.js";
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
 
@@ -8,6 +9,27 @@ export default function renderLoginPage() {
     const navbar = Navbar();
     nav.appendChild(navbar);
 
-    Form();
+    const formulario = Form();
+    const contentForm = formulario.querySelector('form');
 
+    //Inputs e botão presentes no form
+    const inputEmail = contentForm.querySelector('input[type="email"]');
+    const inputSenha = contentForm.querySelector('input[type="password"]');
+    const btn = contentForm.querySelector('button[type="submit"]');
+
+    //Monitora o clique no botão para acionar um evento de submeter os dados do form
+    contentForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
+
+        try {
+            const result = await loginRequest(email, senha);
+            console.log("Login realizado com sucesso!");
+            // window.location.pathname = "/meusite/home";
+        }
+        catch {
+            console.log("Erro inesperado!");
+        }
+    });
 }
