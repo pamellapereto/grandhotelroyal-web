@@ -24,3 +24,23 @@ input {
     background-color: rgb(3, 65, 136);
     border-color: rgb(3, 65, 136);
 }
+
+/*Hero Section*/
+.hero-frame {
+    height: 70vh;
+    margin: 0 auto; 
+    overflow: hidden; /*Impede que a imagem vaze do quadro*/
+}
+.hero-img {
+    width: 100%;
+    height: 100%;
+    /*Aplica propriedade cover para que a imagem preencha o quadro*/
+    object-fit: cover;
+    object-position: center; /*Centraliza o recorte da imagem*/
+}
+
+@media (max-width: 576px) {
+    .hero-frame {
+        height: 50vh;
+    }
+}
