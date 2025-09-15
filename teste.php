@@ -4,23 +4,20 @@
     require_once __DIR__ ."/controllers/PasswordController.php";
     require_once __DIR__ ."/helpers/token_jwt.php";
 
-    
-    $data = [
-        "nome" => "Quarto Supremo",
-        "numero" => 250,
-        "qtd_casal" => 1,
-        "qtd_solteiro" => 1,
-        "preco" => 350,
-        "disponivel" => 1
-    ];
 
-    // RoomController::create($conn, $data);
-    // RoomController::update($conn, 5, $data);
-    echo var_dump(RoomModel::delete($conn, 4));
+    RoomController::getAll($conn);
+    
     
 
 
-
+    // $data = [
+    //     "nome" => "Quarto Supremo",
+    //     "numero" => 250,
+    //     "qtd_casal" => 1,
+    //     "qtd_solteiro" => 1,
+    //     "preco" => 350,
+    //     "disponivel" => 1
+    // ];
 
     // $data = [
     //     "email"=>"fulano@email.com",

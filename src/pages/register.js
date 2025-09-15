@@ -13,6 +13,7 @@ export default function renderRegisterPage() {
     const titulo = formulario.querySelector('h1');
     titulo.textContent = "Cadastre-se";
 
+
     //Seleciono o elemento form que está presente em ./components/Form.js
     const contentForm = formulario.querySelector('form');
 

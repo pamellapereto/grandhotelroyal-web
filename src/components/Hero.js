@@ -1,11 +1,11 @@
 export default function Hero() {
     const containerHero = document.createElement('div');
     containerHero.className = 'hero w-100 d-flex justify-content-center';
+    containerHero.style.backgroundColor = "red";
     containerHero.innerHTML =
     `
 <div class = "hero-frame w-100">
     <div id="carouselExampleIndicators" class="carousel slide">
-
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
