@@ -25,6 +25,11 @@ input {
     border-color: rgb(3, 65, 136);
 }
 
+
+#root {
+    flex-direction: column;
+}
+
 /*Hero Section*/
 .hero-frame {
     overflow: hidden; /*Impede que a imagem vaze do quadro*/
@@ -43,4 +48,12 @@ input {
     .hero img, .hero {
         height: 50vh;
     }
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
 }

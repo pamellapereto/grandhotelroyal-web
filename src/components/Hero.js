@@ -1,7 +1,6 @@
 export default function Hero() {
     const containerHero = document.createElement('div');
     containerHero.className = 'hero w-100 d-flex justify-content-center';
-    containerHero.style.backgroundColor = "red";
     containerHero.innerHTML =
     `
 <div class = "hero-frame w-100">
