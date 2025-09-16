@@ -28,6 +28,9 @@ input {
 
 #root {
     flex-direction: column;
+    gap: 10vh;
+    padding-bottom: 10vh;
+    background-color: rgba(243, 242, 242, 0.87);
 }
 
 /*Hero Section*/

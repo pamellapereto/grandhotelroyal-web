@@ -26,7 +26,9 @@ export default function renderHomePage() {
         cardsGroup.appendChild(cards);
     }
 
+    
     divRoot.appendChild(cardsGroup);
+
 
 
     //Footer
