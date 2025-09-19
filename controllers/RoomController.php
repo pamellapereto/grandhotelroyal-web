@@ -4,6 +4,12 @@ require_once __DIR__ . "/../models/RoomModel.php";
 class RoomController{
 
     public static function create($conn, $data){
+
+        if( ! isset($data['disponivel']) ){
+            return jsonResponse(['message'=>"Erro, Falta o campo: disponivel"], 400);
+        }
+
+
         $result = RoomModel::create($conn, $data);
         if ($result){
             return jsonResponse(['message'=>"Quarto criado com sucesso"]);
@@ -40,9 +46,6 @@ class RoomController{
         }
     }
 
-
-
 }
-
 
 ?>

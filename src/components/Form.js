@@ -1,6 +1,7 @@
 export default function Form() {
     const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
+    // divRoot.classList.add("vh-100");
     divRoot.style.alignItems = "center";
     divRoot.style.height = "100vh";
 

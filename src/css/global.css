@@ -25,7 +25,6 @@ input {
     border-color: rgb(3, 65, 136);
 }
 
-
 #root {
     flex-direction: column;
     gap: 10vh;
