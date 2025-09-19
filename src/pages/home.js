@@ -21,11 +21,13 @@ export default function renderHomePage() {
     const cardsGroup = document.createElement('div');
     cardsGroup.className = "cards";
 
+    /*Desafio: consertar o bug do carrossel
+    em cada card, E AINDA REUTILIZANDO O MESMO
+    COMPONENTE*/
     for (var i=0; i < 3; i++) {
-        const cards = RoomCard();
+        const cards = RoomCard(i);
         cardsGroup.appendChild(cards);
     }
-
     
     divRoot.appendChild(cardsGroup);
 
