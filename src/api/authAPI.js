@@ -8,7 +8,6 @@ export async function loginRequest(email, senha) {
         },
         
         body: JSON.stringify(dados),
-        // body: new URLSearchParams({ "email":email, "password":senha }).toString(),
 
         /* URL da requisição é a mesma da origem do front (mesmo protocolo http/
         mesmo domínio - local/mesma porta 80 do servidor web Apache) 
@@ -55,15 +54,3 @@ export async function loginRequest(email, senha) {
     export function clearToken() {
         localStorage.removeItem("auth_token");
     }
-
-
-/*
-<form>
-
-    <input name="email" value="daniloa@gmail.com">
-    <input name="senha" value="minha senha 123">
-
-</form>
-
-email=daniloa%40gmail.com&senha=minha+senha+123
-*/
