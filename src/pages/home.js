@@ -1,7 +1,7 @@
+import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import RoomCard from "../components/RoomCard.js";
-
 
 export default function renderHomePage() {
     //Navbar
@@ -16,6 +16,9 @@ export default function renderHomePage() {
 
     const hero = Hero();
     divRoot.appendChild(hero);
+
+    const dateSelector = DateSelector();
+    divRoot.appendChild(dateSelector);
     
     //Grupo para incorporar cada div de cada card, para aplicar display-flex
     const cardsGroup = document.createElement('div');

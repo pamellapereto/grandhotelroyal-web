@@ -27,7 +27,7 @@ input {
 
 #root {
     flex-direction: column;
-    gap: 10vh;
+    gap: 6vh;
     padding-bottom: 10vh;
     background-color: rgba(243, 242, 242, 0.87);
 }
@@ -58,4 +58,11 @@ input {
     justify-content: center;
     align-items: center;
     gap: 35px;
+}
+
+.divDate {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+   
 }

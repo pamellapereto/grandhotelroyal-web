@@ -1,3 +1,4 @@
+import renderCartPage from "./pages/cart.js";
 import renderHomePage from "./pages/home.js";
 import renderLoginPage from "./pages/login.js";
 import renderRegisterPage from "./pages/register.js";
@@ -6,7 +7,8 @@ import renderRegisterPage from "./pages/register.js";
 const routes = {
    "/login": renderLoginPage,
    "/cadastro": renderRegisterPage,
-   "/home": renderHomePage
+   "/home": renderHomePage,
+   "/carrinho": renderCartPage
 };
 
 
