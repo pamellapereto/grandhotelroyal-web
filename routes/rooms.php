@@ -5,7 +5,14 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     $id = $segments[2] ?? null;
 
     if (isset($id)){
-        RoomController::getById($conn, $id);
+        if (is_numeric($id)){
+            RoomController::getById($conn, $id);
+        }else{
+            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
+            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
+            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
+            RoomController::get_available($conn, ["data_inicio"=>$inicio, "data_fim"=>$fim, "qtd"=>$qtd]);
+        }
     }else{
         RoomController::getAll($conn);
     }

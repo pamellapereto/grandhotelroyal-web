@@ -54,6 +54,25 @@ class RoomModel{
         return $stmt->execute();
     }
 
+    public static function get_available($conn,$data){
+        $sql = "SELECT *
+        FROM quartos
+        WHERE quartos.disponivel = 1
+        AND (quartos.qtd_cama_casal * 2 + quartos.qtd_cama_solteiro) >= ?
+        AND quartos.id NOT IN (
+            SELECT reservas.quarto_id
+            FROM reservas
+            WHERE NOT (reservas.data_fim <= ? AND reservas.data_inicio >= ?))";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", 
+            $data["qtd"],
+            $data["data_inicio"],
+            $data["data_fim"],
+        );
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
 
 }
 
