@@ -1,6 +1,6 @@
 export default function RoomCard(index) {
     const card = document.createElement('div');
-    card.className = "cardContainer";
+    card.className = "carousel-item";
     card.innerHTML =
     //Bootstrap
     `

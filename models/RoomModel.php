@@ -62,7 +62,7 @@ class RoomModel{
         AND quartos.id NOT IN (
             SELECT reservas.quarto_id
             FROM reservas
-            WHERE NOT (reservas.data_fim <= ? AND reservas.data_inicio >= ?))";
+            WHERE (reservas.data_fim <= ? AND reservas.data_inicio >= ?))";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss", 
             $data["qtd"],
