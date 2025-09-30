@@ -25,6 +25,8 @@
     // ];
     // AuthController::login($conn, $data);
 
+
+    
     // $tokenInvalido = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtZXVzaXRlIiwiaWF0IjoxNzU2OTIyNTQ1LCJleHAiOjE3NTY5MjYxNDUsInN1YiI6eyJpZCI6Miwibm9tZSI6ImZ1bGFubyIsImVtYWlsIjoiZnVsYW5vQGVtYWlsLmNvbSIsImNhcmdvIjoiZnVuY2lvbmFyaW8ifX0.-eySYeU6wQV8IKrbzKmTi_Rw9N3m_5LkC_mQwqQkc4M";
     // echo validateToken($tokenInvalido);
     // $tokenValido = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtZXVzaXRlIiwiaWF0IjoxNzU2OTMwMjAwLCJleHAiOjE3NTY5MzM4MDAsInN1YiI6eyJpZCI6Miwibm9tZSI6ImZ1bGFubyIsImVtYWlsIjoiZnVsYW5vQGVtYWlsLmNvbSIsImNhcmdvIjoiZnVuY2lvbmFyaW8ifX0.nXykpS-rX4K-80OLf8NEVBHHOr9gcL4vUDb5P1LRZ2o";

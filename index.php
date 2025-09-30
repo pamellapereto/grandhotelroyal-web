@@ -17,21 +17,20 @@ $segments = explode("/", trim($uri, "/") );
 $route = $segments[0] ?? null;
 $subRoute = $segments[1] ?? null;
 
-if ($route != "api"){
+if ($route != "api") {
+    //require "teste.php";
     require __DIR__ . "/public/index.html";
-    // require "teste.php";
     exit;
-}
-//Back-end para rotas de requisição (endpoint)
-elseif ($route === "api"){
-    if (in_array($subRoute, ["login", "rooms", "clients", "additionals"] )){
+ 
+} elseif ($route === "api") {
+    if (in_array($subRoute, ["login", "rooms", "clients", "additionals", "request", "reservation", "clientlogin"])) {
         require "routes/${subRoute}.php";
-    }else{
-        return jsonResponse(['message'=>'Rota da API não encontrada'], 404);
+    } else {
+        return jsonResponse(['mesage' => 'rota não encontrada', 404]);
     }
     exit;
-}else{
-    echo "404 pagina nao encontrada";
+} else {
+    echo "404 pagina não encontrada";
     exit;
 }
 

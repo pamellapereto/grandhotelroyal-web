@@ -66,8 +66,8 @@ class RoomModel{
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iss", 
             $data["qtd"],
-            $data["data_inicio"],
             $data["data_fim"],
+            $data["data_inicio"],
         );
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
