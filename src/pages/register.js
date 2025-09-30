@@ -22,10 +22,21 @@ export default function renderRegisterPage() {
     nome.type = 'text';
     nome.placeholder = "Digite seu nome";
 
+    const cpf = document.createElement('input');
+    cpf.type = 'text';
+    cpf.placeholder = "Digite seu CPF";
+
+    const telefone = document.createElement('input');
+    telefone.type = 'text';
+    telefone.placeholder = "Digite seu telefone";
+
     /*Para adicionar input nome ao contentForm, localizo onde está input email pois
     quero necessariamente adicionar anteriormente a ele */
     const inputEmail = formulario.querySelector('input[type="email"]');
+    
     contentForm.insertBefore(nome, inputEmail);
+    contentForm.insertBefore(cpf, contentForm.children[1]);
+    contentForm.insertBefore(telefone, contentForm.children[2]);
 
     //Criar o input para confirmar senha
     const confSenha = document.createElement('input');
@@ -38,7 +49,7 @@ export default function renderRegisterPage() {
         portanto utilizar insertBefore() e identificar a posição de btn[3] como uma
         "child" do elemento pai form
     */
-    contentForm.insertBefore(confSenha, contentForm.children[3]);
+    contentForm.insertBefore(confSenha, contentForm.children[5]);
 
 
     const btnRegister = formulario.querySelector('button');
