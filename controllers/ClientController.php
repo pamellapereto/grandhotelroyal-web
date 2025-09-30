@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . "/../models/ClientModel.php";
+require_once __DIR__ . "/../helpers/token_jwt.php";
 require_once "PasswordController.php";
+
+
 
 class ClientController{
 
@@ -43,9 +46,11 @@ class ClientController{
     }
 
      public static function loginClient($conn, $data) {
- 
+
+      
         $data['email'] = trim($data['email']);
         $data['password'] = trim($data['password']);
+
  
         if (empty($data['email']) || empty($data['password'])) {
             return jsonResponse([

@@ -1,5 +1,6 @@
 <?php 
     require_once __DIR__ ."/controllers/AuthController.php";
+    require_once __DIR__ ."/controllers/ClientController.php";
     require_once __DIR__ ."/controllers/RoomController.php";
     require_once __DIR__ ."/controllers/PasswordController.php";
     require_once __DIR__ ."/helpers/token_jwt.php";
@@ -20,10 +21,13 @@
     // ];
 
     // $data = [
-    //     "email"=>"fulano@email.com",
-    //     "password"=>"123"
+    //     "nome" => "Pamella Pereto",
+    //     "cpf" => "123456",
+    //     "telefone" => "147258",
+    //     "email"=>"pamella@email.com",
+    //     "senha"=>"123"
     // ];
-    // AuthController::login($conn, $data);
+    // ClientController::create($conn, $data);
 
 
     
