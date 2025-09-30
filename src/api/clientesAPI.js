@@ -10,4 +10,17 @@ export async function createRequest(nome, cpf, telefone, email, senha) {
         body: JSON.stringify(dados),
         credentials: "same-origin"
     });
+    // Interpreta a resposta como JSON
+    let data = null;
+    try {
+        data = await response.json();
+    }
+    catch {
+        // Se não for JSON válido, data permanece null
+        data = null;
+    }
+    return {
+        ok: true,
+        raw: data
+    };
 }
