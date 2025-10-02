@@ -6,10 +6,6 @@
     require_once __DIR__ ."/helpers/token_jwt.php";
 
 
-    RoomController::getAll($conn);
-    
-    
-
 
     // $data = [
     //     "nome" => "Quarto Supremo",
@@ -37,9 +33,10 @@
     // echo var_dump( validateToken($tokenValido) );
     
     
-    // echo PasswordController::generateHash($data['password']);
+    // echo PasswordController::generateHash($data['senha']);
     // $hash = '$2y$10$DmOoJfxGTqRg/bMwSEemPe0Llwce5uyOTzaE8sr.ru4Jq1CU.A7li';
     // echo "<br>";
     // echo PasswordController::validateHash($data['password'], $hash);
+    // RoomController::getAll($conn);
 
 ?>

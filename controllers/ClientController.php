@@ -1,17 +1,27 @@
 <?php
 require_once __DIR__ . "/../models/ClientModel.php";
 require_once __DIR__ . "/../helpers/token_jwt.php";
+require_once "AuthController.php";
 require_once "PasswordController.php";
-
+require_once "ValidatorController.php";
 
 
 class ClientController{
 
     public static function create($conn, $data){
+        ValidatorController::validate_data($data, ["nome", "cpf", "telefone", "email", "senha"]);
+
+        $login = [
+            "email" => $data['email'],
+            "password" => $data['senha']
+        ];
+
         $data['senha'] = PasswordController::generateHash($data['senha']);
         $result = ClientModel::create($conn, $data);
         if ($result){
-            return jsonResponse(['message'=>"CLiente criado com sucesso"]);
+            // se o usuario estiver -> efetuar o login
+            // para retornar o Token JWT
+            AuthController::loginClient($conn, $login);
         }else{
             return jsonResponse(['message'=>"Erro ao criar o cliente"], 400);
         }
@@ -37,6 +47,8 @@ class ClientController{
     }
 
     public static function update($conn, $id, $data){
+        ValidatorController::validate_data($data, ["nome", "cpf", "telefone", "email"]);
+
         $result = ClientModel::update($conn, $id, $data);
         if($result){
             return jsonResponse(['message'=> 'Cliente atualizado com sucesso']);
@@ -44,34 +56,6 @@ class ClientController{
             return jsonResponse(['message'=> 'Erro ao atualizar'], 400);
         }
     }
-
-     public static function loginClient($conn, $data) {
-
-      
-        $data['email'] = trim($data['email']);
-        $data['password'] = trim($data['password']);
-
- 
-        if (empty($data['email']) || empty($data['password'])) {
-            return jsonResponse([
-                "status" => "erro",
-                "message" => "Preencha todos os campos!"
-            ], 401);
-        }
- 
-        $client = ClientModel::clientValidation($conn, $data['email'], $data['password']);
-        if ($client) {
-            $token = createToken($client);
-            return jsonResponse([ "token" => $token ]);
-        } else {
-            return jsonResponse([
-                "status" => "erro",
-                "message" => "Credenciais inválidas!"
-            ], 401);
-        }
-    }
-
-
 
 }
 

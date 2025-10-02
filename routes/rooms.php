@@ -5,15 +5,21 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     $id = $segments[2] ?? null;
 
     if (isset($id)){
-        if (is_numeric($id)){
+        if (is_numeric($id)){ // cliente passou um numero -> (API/ROOMS/1)
             RoomController::getById($conn, $id);
-        }else{
-            $inicio = isset($_GET['inicio']) ? $_GET['inicio'] : null;
-            $fim = isset($_GET['fim']) ? $_GET['fim'] : null;
-            $qtd = isset($_GET['qtd']) ? $_GET['qtd'] : null;
-            RoomController::get_available($conn, ["data_inicio"=>$inicio, "data_fim"=>$fim, "qtd"=>$qtd]);
+
+        }elseif($id === "disponiveis"){ // cliente os disponiveis -> (API/ROOMS/DISPONIVEIS?)
+            $data = [ "inicio" => isset($_GET['inicio']) ? $_GET['inicio'] : null,
+                "fim" => isset($_GET['fim']) ? $_GET['fim'] : null,
+                "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
+            RoomController::get_available($conn, $data);
+
+        }else{ // cliente colocou qualquer outra coisa
+            jsonResponse(['message'=>"Essa rota não existe"], 400);
+
         }
-    }else{
+        
+    }else{ // cliente não passou nada -> (API/ROOMS)
         RoomController::getAll($conn);
     }
 }
@@ -22,7 +28,6 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
     $data = json_decode( file_get_contents('php://input'), true );
     RoomController::create($conn, $data);
 }
-
 
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
     $data = json_decode( file_get_contents('php://input'), true );
@@ -40,12 +45,8 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
     }
 }
 
-
 else{
-    jsonResponse([
-        'status'=>'erro',
-        'message'=>'Método não permitido'
-    ], 405);
+    jsonResponse([ 'status'=>'erro', 'message'=>'Método não permitido'], 405);
 }
 
 ?>
