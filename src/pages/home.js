@@ -1,3 +1,4 @@
+import { listAvailableRoomsRequest } from "../api/roomsAPI.js";
 import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
@@ -19,6 +20,25 @@ export default function renderHomePage() {
 
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
+
+    const btnSearchRoom = dateSelector.querySelector('button');
+
+    btnSearchRoom.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const inicio = "2025-09-15"; //Estou setando só para testar pq ainda vamos pegar valor diretamente do input
+        const fim = "2025-09-24";
+        const qtd = 2;
+
+        try {
+            const result = await listAvailableRoomsRequest({inicio, fim, qtd });
+            //Após intervalo: preencher as infos dos quartos nos cards ou avisar ao cliente que não há quarto disp.
+        }
+        catch(error) {
+            console.log(error);
+        }
+    });
+    
     
     //Grupo para incorporar cada div de cada card, para aplicar display-flex
     const cardsGroup = document.createElement('div');

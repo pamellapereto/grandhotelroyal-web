@@ -48,8 +48,8 @@ class RoomController{
     public static function get_available($conn, $data){
         ValidatorController::validate_data($data, ["inicio", "fim", "qtd"]);
 
-        $data["inicio"] = ValidatorController::fix_dateHour($data["inicio"], 14)
-        $data["fim"] = ValidatorController::fix_dateHour($data["fim"], 12)
+        $data["inicio"] = ValidatorController::fix_dateHour($data["inicio"], 14);
+        $data["fim"] = ValidatorController::fix_dateHour($data["fim"], 12);
         
         $result = RoomModel::get_available($conn, $data);
         if($result){

@@ -14,6 +14,7 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
                 "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
             RoomController::get_available($conn, $data);
 
+            
         }else{ // cliente colocou qualquer outra coisa
             jsonResponse(['message'=>"Essa rota não existe"], 400);
 
