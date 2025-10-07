@@ -1,3 +1,8 @@
+/*PARA AMANHÃ, 08/10
+  - Criar um componente  chamado Modal.js e inicializá-lo na página home.js
+    referente às tarefas 1, 2 e 4 abaixo
+  - Criar um componente Spinner.js e inicializá-lo na página home.js referente à tarefa 3*/
+
 import { listAvailableRoomsRequest } from "../api/roomsAPI.js";
 import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
@@ -24,6 +29,13 @@ export default function renderHomePage() {
     const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
     const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
+
+    //Grupo para incorporar cada div de cada card, para aplicar display-flex
+    const cardsGroup = document.createElement('div');
+    cardsGroup.className = "cards";
+    cardsGroup.id = "cards-result";
+   
+
 
     btnSearchRoom.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -63,27 +75,24 @@ export default function renderHomePage() {
                 https://getbootstrap.com/docs/5.3/components/modal/ */
                 return;
             }
-        }
+            cardsGroup.innerHTML = '';
+            result.forEach((itemCard, i) => {
+                cardsGroup.appendChild(RoomCard(itemCard, i));
+            });
+        } 
         catch(error) {
             console.log(error);
         }
     });
     
     
-    //Grupo para incorporar cada div de cada card, para aplicar display-flex
-    const cardsGroup = document.createElement('div');
-    cardsGroup.className = "cards";
-
-    /*Desafio: consertar o bug do carrossel
-    em cada card, E AINDA REUTILIZANDO O MESMO
-    COMPONENTE*/
     for (var i=0; i < 3; i++) {
         const cards = RoomCard(i);
         cardsGroup.appendChild(cards);
     }
     
-    divRoot.appendChild(cardsGroup);
 
+    divRoot.appendChild(cardsGroup);
 
 
     //Footer

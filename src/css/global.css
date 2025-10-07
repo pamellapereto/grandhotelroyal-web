@@ -54,7 +54,7 @@ input {
 
 .cards {
     display: flex;
-    flex-direction: row;
+    flex-direction: wrap;
     justify-content: center;
     align-items: center;
     gap: 35px;
