@@ -4,6 +4,7 @@
   - Criar um componente Spinner.js e inicializá-lo na página home.js referente à tarefa 3*/
 
 import { listAvailableRoomsRequest } from "../api/roomsAPI.js";
+import CardLounge from "../components/CardLounge.js";
 import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
@@ -34,7 +35,11 @@ export default function renderHomePage() {
     const cardsGroup = document.createElement('div');
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
-   
+    
+    /*Anterior à pesquisa: aparecerá o card da infraestrutura do hotel*/
+    const cardLounge = CardLounge();
+    cardsGroup.appendChild(cardLounge);
+    
 
 
     btnSearchRoom.addEventListener("click", async (e) => {
@@ -86,12 +91,6 @@ export default function renderHomePage() {
     });
     
     
-    for (var i=0; i < 3; i++) {
-        const cards = RoomCard(i);
-        cardsGroup.appendChild(cards);
-    }
-    
-
     divRoot.appendChild(cardsGroup);
 
 

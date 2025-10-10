@@ -56,7 +56,7 @@ export default function RoomCard(itemCard, index = 0) {
         
         <div class="card-body">
             <h5 class="card-title">${title}</h5>
-            <ul class=list-unstyled mb-2">
+            <ul class="list-unstyled mb-2">
                 ${camas? `<li>${camas}` : ""}
                 ${preco != null ? `<li>Preco: R$ ${Number(preco).toFixed(2)}</li>` : ""}
             </ul>

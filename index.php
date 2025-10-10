@@ -24,7 +24,7 @@ if ($route != "api") {
     exit;
  
 } elseif ($route === "api") {
-    if (in_array($subRoute, ["login", "rooms", "clients", "additionals", "request", "reservation", "clientlogin"])) {
+    if (in_array($subRoute, ["login", "rooms", "clients", "additionals", "orders"])) {
         require "routes/${subRoute}.php";
     } else {
         return jsonResponse(['mesage' => 'rota não encontrada', 404]);
