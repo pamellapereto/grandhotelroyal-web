@@ -36,10 +36,27 @@ export default function renderHomePage() {
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
     
-    /*Anterior à pesquisa: aparecerá o card da infraestrutura do hotel*/
-    const cardLounge = CardLounge();
-    cardsGroup.appendChild(cardLounge);
-    
+    /*Anterior à pesquisa: aparecerá o card da infraestrutura do hotel]
+    path: é nome do arquivo que está em assets/images */
+    const loungeItems = [
+            {path: "restaurante.jpg", title:
+                "Restaurante", text: "Nosso restaurante"
+                 + " é um espaço agradável e familiar!"},
+
+            {path: "spa.jpg", title: "SPA",
+                 text: "Nosso SPA é ideal para"
+                 + " momentos de relaxamento!"},
+
+            {path: "bar.jpg", title: "Bar",
+                 text: "Nosso bar oferece"
+                 + " drinks sem metanol, confia!"}
+    ];
+ 
+    /*Percorre a array loungeItems*/
+    for (let i = 0; i < loungeItems.length; i++) {
+         const cardLounge = CardLounge(loungeItems[i], i);
+         cardsGroup.appendChild(cardLounge);
+    }
 
 
     btnSearchRoom.addEventListener("click", async (e) => {
