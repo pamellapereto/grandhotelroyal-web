@@ -82,7 +82,9 @@ class OrderModel{
                     continue;
                 }
 
-                // criar um memtodo na classe ReserveModel
+
+                
+                // criar um metodo na classe ReserveModel
                 // para avaliar se o quarto esta disponivel 
                 // no intervalo de datas
                 // ReserveModel::isConflict();

@@ -4,6 +4,7 @@ export default function DateSelector() {
     const dateCheckIn = document.createElement('input');
     dateCheckIn.type = 'date';
     dateCheckIn.className = 'card p-3 shadow-lg inputDate';
+
     const dateCheckOut = document.createElement('input');
     dateCheckOut.type = 'date';
     dateCheckOut.className = 'card p-3 shadow-lg inputDate';

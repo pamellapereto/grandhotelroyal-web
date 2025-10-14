@@ -27,7 +27,14 @@ export default function renderHomePage() {
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
 
+    /*Criar constante que armazene o valor da data de hoje*/
+    const dateToday = new Date().toISOString().split("T")[0];
+    // console.log(dateToday);
+
     const [dateCheckIn, dateCheckOut] = dateSelector.querySelectorAll('input[type="date"]');
+    dateCheckIn.min = dateToday;
+    dateCheckOut.min = dateToday;
+    
     const guestAmount = dateSelector.querySelector('select');
     const btnSearchRoom = dateSelector.querySelector('button');
 
@@ -36,6 +43,15 @@ export default function renderHomePage() {
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
     
+    
+    const cardsGroupInfra = document.createElement('div');
+    cardsGroupInfra.className = "cards";
+
+    const tituloInfra = document.createElement('h2');
+    tituloInfra.textContent = "Conheça nosso hotel";
+    tituloInfra.style.textAlign = "center";
+
+
     /*Anterior à pesquisa: aparecerá o card da infraestrutura do hotel]
     path: é nome do arquivo que está em assets/images */
     const loungeItems = [
@@ -48,16 +64,44 @@ export default function renderHomePage() {
                  + " momentos de relaxamento!"},
 
             {path: "bar.jpg", title: "Bar",
-                 text: "Nosso bar oferece"
+                 text: "Nosso bar ofnerece"
                  + " drinks sem metanol, confia!"}
     ];
- 
+
     /*Percorre a array loungeItems*/
     for (let i = 0; i < loungeItems.length; i++) {
          const cardLounge = CardLounge(loungeItems[i], i);
-         cardsGroup.appendChild(cardLounge);
+         cardsGroupInfra.appendChild(cardLounge);   //AQUI FOI MUDADO PARA QUE cardsGroupInfra incorpore cada card de infraestrutura do hotel
     }
 
+    /*A depender da data de check-in, será
+    calculado o mínimo para a data de check-out (o mínimo de diárias)*/
+    function getMinDateCheckout(dateCheckIn) {
+        const minDaily = new Date(dateCheckIn);
+        minDaily.setDate(minDaily.getDate() + 1);  /*Nº mínimo de diárias*/
+        return minDaily.toISOString().split('T')[0];
+    } 
+
+    /*Evento para monitorar a alteração na data de check-in
+    para calcular o mínimo do check-out e verificar
+    se check-out é posterior a check-in */
+
+    //dateCheckIn.addEventListener("change", function() {
+    dateCheckIn.addEventListener("change", async (e) => {
+        //Se houver um valor válido em dateCheckin
+        if (dateCheckIn.value) {
+            const minDateCheckout = getMinDateCheckout(dateCheckIn.value);
+            dateCheckOut.min = minDateCheckout;
+        
+        //Se já houver uma data de check-out selecionada e for inválida
+            if (dateCheckOut.value && dateCheckOut.value <= dateCheckIn.value) {
+                dateCheckOut.value = "";
+                alert("A data de check-out deve ser posterior ao check-in!");
+                /* Estou utilizando alerta porque EU, PROFESSORA, não tenho
+                um modal, vocês deveriam já ter e chamá-lo no lugar do alert() */ 
+            }
+        }
+    });
 
     btnSearchRoom.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -101,14 +145,17 @@ export default function renderHomePage() {
             result.forEach((itemCard, i) => {
                 cardsGroup.appendChild(RoomCard(itemCard, i));
             });
+            
         } 
         catch(error) {
             console.log(error);
         }
     });
-    
-    
+
+
     divRoot.appendChild(cardsGroup);
+    divRoot.appendChild(tituloInfra);
+    divRoot.appendChild(cardsGroupInfra);
 
 
     //Footer
