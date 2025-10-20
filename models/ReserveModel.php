@@ -21,9 +21,60 @@ class ReserveModel{
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
- 
+
+    //KEVEN - RETORNA TRUE SE NAO TEM CONFLITO
+    public static function isQuartoDisponivel($conn, $quarto_id, $inicio, $fim) {
+        $sql = "SELECT COUNT(*) as conflitos
+                FROM reservas
+                WHERE quarto_id = ?
+                AND (
+                    (data_inicio <= ? AND data_fim > ?) OR
+                    (data_inicio < ? AND data_fim >= ?) OR
+                    (data_inicio >= ? AND data_fim <= ?)
+                )";
+       
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("issssss",
+            $quarto_id,
+            $fim, $inicio,
+            $inicio, $fim,
+            $inicio, $fim
+        );
+       
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['conflitos'] == 0;
+    }
     
- 
+    // MATHEUS  - RETORNA TRUE SE LINHAS AFETADAS MAIOR QUE ZERO
+    public static function isConflito($conn, $quarto_id, $inicio, $fim) {
+        $sql = "SELECT * FROM reservas WHERE quarto_id = ? AND data_inicio < ? AND data_fim > ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", $quarto_id, $fim, $inicio);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    // JOÃO - RETORNA TRUE SE LINHAS AFETADAS MAIOR QUE ZERO
+    public static function getAvaibleOrder($conn, $fkQuarto, $inicio, $fim) {
+            $sql ="SELECT id
+            FROM reservas
+            WHERE quarto_id = ? AND
+                ( data_inicio < ? AND data_fim > ?) LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iss",
+                $fkQuarto,
+                $fim,
+                $inicio);  
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $isReserved = $result->num_rows > 0;
+            $stmt->close();
+            return $isReserved;
+        }
+
 }
 ?>
  

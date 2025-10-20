@@ -56,6 +56,7 @@ class OrderModel{
         $cliente_id = $data['cliente_id'];
         $pagamento = $data['pagamento'];
         $usuario_id = $data['usuario_id'];
+
         $reservas = [];
         $reservou = false;
 
@@ -82,13 +83,12 @@ class OrderModel{
                     continue;
                 }
 
-
-                
                 // criar um metodo na classe ReserveModel
-                // para avaliar se o quarto esta disponivel 
-                // no intervalo de datas
-                // ReserveModel::isConflict();
-
+                // para avaliar se o quarto esta disponivel no intervalo de datas
+                if (!ReserveModel::isQuartoDisponivel($conn, $id, $inicio, $fim)){
+                    $reservas[] = "Quarto {$id} já esta reservado!";
+                    continue;
+                }
 
                 $reserverResult = ReserveModel::create($conn,[
                     "pedido_id" => $order_id,
@@ -111,7 +111,7 @@ class OrderModel{
                     "messagem" => "Reservas criadas com sucesso!!"
                 ];
             }else{
-                throw new RuntimeException("Pedido nao realizado, nenhum quarto reservado");
+                throw new RuntimeException("Pedido nao realizado, nenhum quarto reservado!");
             }
 
         } catch (\Throwable $th) {

@@ -31,18 +31,23 @@ class OrderController{
 
         foreach($data['quartos'] as $quarto){
             ValidatorController::validate_data($quarto, ["id", "inicio", "fim"]);
+            //corrigir  fix da HORA, salvar na 
+            // variavel $data
+            $quarto["inicio"] = ValidatorController::fix_dateHour($quarto["inicio"], 14);
+            $quarto["fim"] = ValidatorController::fix_dateHour($quarto["fim"], 12);
         }
         
         if ( count($data["quartos"]) == 0){
             return jsonResponse(['message'=> 'Não existe reservas'], 400);
         }
 
-        // os alunos devem corrigir as horas do inicio|fim de cada quarto
-        // se eles nao faZ'rem, vai dar bug
-
-        // OrderModel::createOrder($conn, $data);
-
-
+        try{
+            $resultado = OrderModel::createOrder($conn, $data);
+            return jsonResponse(['message' => $resultado]);
+            
+        }catch(\Throwable $erro){
+            return jsonResponse(['message' => $erro->getMessage()], 500);
+        }
 
     }
 }
