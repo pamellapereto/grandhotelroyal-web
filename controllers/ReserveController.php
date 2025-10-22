@@ -16,7 +16,7 @@ class ReserveController{
         }else{
             return jsonResponse(['message'=> 'Erro ao criar reserva!'], 400);
         }
-    }
+    } 
    
     public static function searchByRequest($conn, $pedido_id) {
         $result = ReserveModel::searchByRequest($conn, $pedido_id);
