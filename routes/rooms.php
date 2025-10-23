@@ -13,20 +13,18 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
                 "fim" => isset($_GET['fim']) ? $_GET['fim'] : null,
                 "qtd" => isset($_GET['qtd']) ? $_GET['qtd'] : null];
             RoomController::get_available($conn, $data);
-
-            
         }else{ // cliente colocou qualquer outra coisa
             jsonResponse(['message'=>"Essa rota não existe"], 400);
 
         }
-        
     }else{ // cliente não passou nada -> (API/ROOMS)
         RoomController::getAll($conn);
     }
 }
 
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
-    $data = json_decode( file_get_contents('php://input'), true );
+    $data = $_POST;
+    $data['fotos'] = $_FILES['fotos'] ?? null;
     RoomController::create($conn, $data);
 }
 
