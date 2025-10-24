@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar.js";
 import Form from "../components/Form.js";
+import { addRoom } from '../api/roomsAPI.js';
 
 export default function renderManageRoom() {
     //Menu (navigation)
@@ -88,7 +89,14 @@ export default function renderManageRoom() {
     const btnRegisterRoom = contentForm.querySelector('button');
     btnRegisterRoom.textContent = 'Cadastrar';
 
-    // divRoot.appendChild()
-
-    //Rodapé
+    contentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try { 
+            const response = await addRoom(this);
+            console.log("Resposta do servidor: " + response);
+        }
+        catch (error) {
+            console.log("Erro ao enviar requisição: " + error.message);
+        }
+    })
 }
