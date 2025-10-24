@@ -64,6 +64,9 @@ class RoomController{
         
         $result = RoomModel::get_available($conn, $data);
         if($result){
+            foreach ($result as &$quarto) {
+                $quarto['fotos'] = PhotoModel::getByRoomId($conn, $quarto['id']);
+            }
             return jsonResponse(['Quartos'=> $result]);
         }else{
             return jsonResponse(['message'=> 'não tem quartos disponiveis'], 400);
