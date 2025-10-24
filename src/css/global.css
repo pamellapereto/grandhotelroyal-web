@@ -17,11 +17,12 @@
     font-size: 17px;
 }
 
-input {
+input, .select-qtd {
     border-style: solid;
     border-color: rgb(117, 171, 233);
     border-radius: 10px;
     margin-bottom: 15px;
+    color:#757575;
 }
 
 .btn-primary:hover {

@@ -1,6 +1,7 @@
 import renderCartPage from "./pages/cart.js";
 import renderHomePage from "./pages/home.js";
 import renderLoginPage from "./pages/login.js";
+import renderManageRoom from "./pages/manageRoom.js";
 import renderRegisterPage from "./pages/register.js";
 
 //Configuraçao de rotas mapeadas
@@ -8,9 +9,10 @@ const routes = {
    "/login": renderLoginPage,
    "/cadastro": renderRegisterPage,
    "/home": renderHomePage,
-   "/carrinho": renderCartPage
+   "/carrinho": renderCartPage,
+   "/cadastrar-quarto": renderManageRoom
 };
-
+ 
 
 //Obtém o caminho atual a parte do nome
 function getPath() {

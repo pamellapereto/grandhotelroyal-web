@@ -1,0 +1,79 @@
+import Navbar from "../components/Navbar.js";
+import Form from "../components/Form.js";
+
+export default function renderManageRoom() {
+    //Menu (navigation)
+    const nav = document.getElementById('navbar');
+    nav.innerHTML = '';
+    const navbar = Navbar();
+    nav.appendChild(navbar);
+
+    const formulario = Form();
+    const titulo = formulario.querySelector('h1');
+    titulo.textContent = 'Gerenciar quarto';
+
+    const contentForm = formulario.querySelector('form');
+
+    //nome, numero, qtd_casal, qtd_solteiro, preco, disponivel, multiple files
+    const inputNome = contentForm.querySelector('input[type=email]');
+    inputNome.type = 'text';
+    inputNome.placeholder = "Digite o nome"
+
+    const inputNumero = contentForm.querySelector('input[type=password]');
+    inputNumero.type = 'text';
+    inputNumero.placeholder = "Digite o número"
+
+    const inputQtd_Casal = document.createElement('select');
+    inputQtd_Casal.className = 'select-qtd';
+    inputQtd_Casal.style.borderWidth = '0.15rem';
+    inputQtd_Casal.innerHTML =
+    `
+    <option class="" value="0">Quantidade cama de casal</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>`
+
+    const inputQtd_Solteiro = document.createElement('input');
+    inputQtd_Solteiro.type = 'number';
+    inputQtd_Solteiro.placeholder = 'Quantidade cama solteiro'
+    inputQtd_Solteiro.min = 0;
+    inputQtd_Solteiro.max = 3;
+
+    const subTitDisp = document.createElement('p');
+    subTitDisp.textContent = 'Quarto disponível:'
+
+    const divDisp = document.createElement('div');
+    divDisp.className = 'd-flex flex-row gap-2';
+    divDisp.style.color = "#6a6a6aff";
+
+    const labelTrue = document.createElement('label');
+    labelTrue.textContent = 'Sim';
+    const inputDispTrue = document.createElement('input');
+    inputDispTrue.type = 'radio';
+    inputDispTrue.value = true;
+    
+    const labelFalse = document.createElement('label');
+    labelFalse.textContent = 'Não';
+
+    const inputDispFalse = document.createElement('input');
+    inputDispFalse.type = 'radio';
+    inputDispFalse.value = false;
+
+    divDisp.appendChild(subTitDisp);
+    divDisp.appendChild(inputDispTrue);
+    divDisp.appendChild(labelTrue);
+
+    divDisp.appendChild(inputDispFalse);
+    divDisp.appendChild(labelFalse);
+    
+    contentForm.insertBefore(inputQtd_Casal, contentForm.children[2]);
+    contentForm.insertBefore(inputQtd_Solteiro, contentForm.children[3]);
+    contentForm.insertBefore(divDisp, contentForm.children[4]);
+ 
+    const btnRegisterRoom = contentForm.querySelector('button');
+    btnRegisterRoom.textContent = 'Cadastrar';
+
+    // divRoot.appendChild()
+
+    //Rodapé
+}
