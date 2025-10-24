@@ -14,15 +14,18 @@ export default function renderManageRoom() {
     titulo.textContent = 'Gerenciar quarto';
 
     const contentForm = formulario.querySelector('form');
+    contentForm.enctype = "multipart/form-data";
 
     //nome, numero, qtd_casal, qtd_solteiro, preco, disponivel, multiple files
     const inputNome = contentForm.querySelector('input[type=email]');
     inputNome.type = 'text';
     inputNome.placeholder = "Digite o nome"
+    inputNome.name = 'nome';
 
     const inputNumero = contentForm.querySelector('input[type=password]');
     inputNumero.type = 'text';
     inputNumero.placeholder = "Digite o número"
+    inputNumero.name = 'numero';
 
     const inputQtd_Casal = document.createElement('select');
     inputQtd_Casal.className = 'select-qtd';
@@ -34,16 +37,20 @@ export default function renderManageRoom() {
     <option value="2">2</option>
     <option value="3">3</option>`
 
+    inputQtd_Casal.name = "qtd_casal";
+
     const inputQtd_Solteiro = document.createElement('input');
     inputQtd_Solteiro.type = 'number';
     inputQtd_Solteiro.placeholder = 'Quantidade cama solteiro'
     inputQtd_Solteiro.min = 0;
     inputQtd_Solteiro.max = 3;
+    inputQtd_Solteiro.name = "qtd_solteiro";
 
     const inputPreco = document.createElement('input');
     inputPreco.type = 'number';
     inputPreco.placeholder = 'Digite o preço da diária';
     inputPreco.step = "0.01";
+    inputPreco.name = "preco";
 
     const subTitDisp = document.createElement('p');
     subTitDisp.textContent = 'Quarto disponível:'
