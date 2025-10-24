@@ -39,6 +39,11 @@ export default function renderManageRoom() {
     inputQtd_Solteiro.min = 0;
     inputQtd_Solteiro.max = 3;
 
+    const inputPreco = document.createElement('input');
+    inputPreco.type = 'number';
+    inputPreco.placeholder = 'Digite o preço da diária';
+    inputPreco.step = "0.01";
+
     const subTitDisp = document.createElement('p');
     subTitDisp.textContent = 'Quarto disponível:'
 
@@ -50,6 +55,7 @@ export default function renderManageRoom() {
     labelTrue.textContent = 'Sim';
     const inputDispTrue = document.createElement('input');
     inputDispTrue.type = 'radio';
+    inputDispTrue.name = 'disponivel';
     inputDispTrue.value = true;
     
     const labelFalse = document.createElement('label');
@@ -57,6 +63,7 @@ export default function renderManageRoom() {
 
     const inputDispFalse = document.createElement('input');
     inputDispFalse.type = 'radio';
+    inputDispFalse.name = 'disponivel';
     inputDispFalse.value = false;
 
     divDisp.appendChild(subTitDisp);
@@ -65,10 +72,18 @@ export default function renderManageRoom() {
 
     divDisp.appendChild(inputDispFalse);
     divDisp.appendChild(labelFalse);
-    
+
+    const inputFotos = document.createElement('input');
+    inputFotos.className = 'form-control';
+    inputFotos.type = 'file';
+    inputFotos.id = 'formFileMultiple';
+    inputFotos.multiple = true;
+
     contentForm.insertBefore(inputQtd_Casal, contentForm.children[2]);
     contentForm.insertBefore(inputQtd_Solteiro, contentForm.children[3]);
-    contentForm.insertBefore(divDisp, contentForm.children[4]);
+    contentForm.insertBefore(inputPreco, contentForm.children[4]);
+    contentForm.insertBefore(divDisp, contentForm.children[5]);
+    contentForm.insertBefore(inputFotos, contentForm.children[6]);
  
     const btnRegisterRoom = contentForm.querySelector('button');
     btnRegisterRoom.textContent = 'Cadastrar';
