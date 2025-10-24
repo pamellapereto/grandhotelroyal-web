@@ -79,6 +79,14 @@ export default function renderManageRoom() {
     inputFotos.type = 'file';
     inputFotos.id = 'formFileMultiple';
     inputFotos.multiple = true;
+    inputFotos.accept = "image/*";
+    inputFotos.name = 'fotos[]';
+
+    /* PARA VOCÊ QUE ESTÁ FAZENDO COMO NO BOOSTRAP
+    inputFotos.innerHTML =  `
+    <input name="fotos[]" type="file" multiple id="formFileMultiple"
+    class="form-control" accept="image/*" />
+    `*/
 
     contentForm.insertBefore(inputQtd_Casal, contentForm.children[2]);
     contentForm.insertBefore(inputQtd_Solteiro, contentForm.children[3]);
@@ -92,7 +100,7 @@ export default function renderManageRoom() {
     contentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         try { 
-            const response = await addRoom(this);
+            const response = await addRoom(contentForm);
             console.log("Resposta do servidor: " + response);
         }
         catch (error) {
