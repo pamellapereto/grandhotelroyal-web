@@ -20,8 +20,7 @@ export async function addRoom(contentForm) {
     }
     catch {
         // Se não for JSON válido, result permanece null
-        result = null;
-    }
+        result = null; }
     if(!response.ok) {
         throw new Error(`Erro ao enviar requisição: ${response.status}`);
     }

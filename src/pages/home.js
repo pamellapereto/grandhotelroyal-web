@@ -36,13 +36,18 @@ export default function renderHomePage() {
     dateCheckOut.min = dateToday;
     
     const guestAmount = dateSelector.querySelector('select');
+
+    dateCheckIn.id = 'id-dateCheckIn';
+    dateCheckOut.id = 'id-dateCheckOut';
+    guestAmount.id = 'id-guestAmount';
+
     const btnSearchRoom = dateSelector.querySelector('button');
 
     //Grupo para incorporar cada div de cada card, para aplicar display-flex
     const cardsGroup = document.createElement('div');
     cardsGroup.className = "cards";
     cardsGroup.id = "cards-result";
-    
+
     
     const cardsGroupInfra = document.createElement('div');
     cardsGroupInfra.className = "cards";
@@ -104,7 +109,7 @@ export default function renderHomePage() {
     });
 
     btnSearchRoom.addEventListener("click", async (e) => {
-        e.preventDefault();
+       e.preventDefault();
 
         const inicio = (dateCheckIn?.value || "").trim();
         const fim = (dateCheckOut?.value || "").trim();
