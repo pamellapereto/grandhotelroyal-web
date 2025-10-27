@@ -7,19 +7,25 @@ export async function addRoom(contentForm) {
         if(!typeAccept.includes(imgs[i].type)) {
             throw new Error(`Arquivo "${imgs[i].name}" não é suportado.
             Selecione um arquivo JPG ou PNG`);
-        }
-    }
+        }}
     const url = `api/rooms`;
     const response = await fetch(url, {
         method: "POST",
         body: formData
     });
+    // Interpreta a resposta como JSON
+    let result = null;
+    try {
+        result = await response.json();
+    }
+    catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
     if(!response.ok) {
         throw new Error(`Erro ao enviar requisição: ${response.status}`);
     }
-    const result = await response.json();
-    return result;
-}   
+    return result; }   
 
 /* Listar os quartos disponíveis de acordo com inicio, fim e qtd */
 export async function listAvailableRoomsRequest({ inicio, fim, qtd }) {

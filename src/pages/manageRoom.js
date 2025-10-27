@@ -64,7 +64,7 @@ export default function renderManageRoom() {
     const inputDispTrue = document.createElement('input');
     inputDispTrue.type = 'radio';
     inputDispTrue.name = 'disponivel';
-    inputDispTrue.value = true;
+    inputDispTrue.value = "1";
     
     const labelFalse = document.createElement('label');
     labelFalse.textContent = 'Não';
@@ -72,7 +72,7 @@ export default function renderManageRoom() {
     const inputDispFalse = document.createElement('input');
     inputDispFalse.type = 'radio';
     inputDispFalse.name = 'disponivel';
-    inputDispFalse.value = false;
+    inputDispFalse.value = "0";
 
     divDisp.appendChild(subTitDisp);
     divDisp.appendChild(inputDispTrue);
@@ -108,7 +108,7 @@ export default function renderManageRoom() {
         e.preventDefault();
         try { 
             const response = await addRoom(contentForm);
-            console.log("Resposta do servidor: " + response);
+            console.log("Resposta do servidor: ", response);
         }
         catch (error) {
             console.log("Erro ao enviar requisição: " + error.message);
