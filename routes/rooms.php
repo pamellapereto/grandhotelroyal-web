@@ -23,20 +23,22 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
 }
 
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
+    validateTokenAPI("funcionario");
     $data = $_POST;
     $data['fotos'] = $_FILES['fotos'] ?? null;
     RoomController::create($conn, $data);
 }
 
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     RoomController::update($conn, $id, $data);
 }
 
 elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    validateTokenAPI("funcionario");
     $id = $segments[2] ?? null;
-
     if (isset($id)){
         RoomController::delete($conn, $id);
     }else{

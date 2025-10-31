@@ -6,6 +6,7 @@ class AdditionalController{
 
     public static function create($conn, $data){
         ValidatorController::validate_data($data, ["nome", "preco"]);
+        
         $result = AdditionalModel::create($conn, $data);
         if ($result){
             return jsonResponse(['message'=>"Adicional criado com sucesso"]);

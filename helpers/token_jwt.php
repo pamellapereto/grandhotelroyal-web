@@ -18,24 +18,30 @@ function validateToken($token){
     try{
         $key = new Key(SECRET_KEY, "HS256");
         $decode = JWT::decode($token, $key);
-        return $decode->sub;
+        $result = json_decode(json_encode($decode->sub) , true);
+        return $result;
     }catch(Exception $error){
         return false;
     }
 }
 
-function validateTokenAPI(){
+function validateTokenAPI($typeRole){
     $headers = getallheaders();
     if ( !isset($headers["Authorization"]) ){
         jsonResponse(['message'=>"Token ausente"], 401);
         exit;
     }
     $token = str_replace("Bearer ", "", $headers["Authorization"]);
-    if ( !validateToken($token) ){
+    $user = validateToken($token);
+    if (!$user){
         jsonResponse(['message'=>"Token invalido"], 401);
         exit;
     }
+    if ($user['cargo'] != $typeRole){
+        jsonResponse(['message'=>"Usuario não autorizado!"], 401);
+        exit;
+    }
+    return $user;
 }
-
 
 ?>

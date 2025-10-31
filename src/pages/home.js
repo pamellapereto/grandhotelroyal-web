@@ -60,15 +60,15 @@ export default function renderHomePage() {
     /*Anterior à pesquisa: aparecerá o card da infraestrutura do hotel]
     path: é nome do arquivo que está em assets/images */
     const loungeItems = [
-            {path: "restaurante.jpg", title:
+            {path: "Palmeiras_logo.svg.webp", title:
                 "Restaurante", text: "Nosso restaurante"
                  + " é um espaço agradável e familiar!"},
 
-            {path: "spa.jpg", title: "SPA",
+            {path: "Palmeiras_logo.svg.webp", title: "SPA",
                  text: "Nosso SPA é ideal para"
                  + " momentos de relaxamento!"},
 
-            {path: "bar.jpg", title: "Bar",
+            {path: "Palmeiras_logo.svg.webp", title: "Bar",
                  text: "Nosso bar ofnerece"
                  + " drinks sem metanol, confia!"}
     ];

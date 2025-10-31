@@ -3,6 +3,8 @@ require_once __DIR__ . "/../controllers/ClientController.php";
 
 
 if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
+    validateTokenAPI("funcionario");
+
     $id = $segments[2] ?? null;
 
     if (isset($id)){
@@ -16,11 +18,13 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
     ClientController::create($conn, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI("admin");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     ClientController::update($conn, $id, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    validateTokenAPI("admin");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     if (isset($id)){
@@ -30,10 +34,7 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
     }
 }
 else{
-    jsonResponse([
-        'status'=>'erro',
-        'message'=>'Método não permitido'
-    ], 405);
+    jsonResponse(['status'=>'erro', 'message'=>'Método não permitido'], 405);
 }
 
 ?>

@@ -50,15 +50,15 @@ export default function RoomCard(itemCard, index = 0) {
   
             <div class="carousel-inner shadow">
                 <div class="carousel-item active">
-                    <img src="public/assets/images/carousel1.jpg" class="d-block w-100" alt="...">
+                    <img src="public/assets/images/Palmeiras_logo.svg.webp.jpg" class="d-block w-100" alt="...">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="public/assets/images/carousel2.jpg" class="d-block w-100" alt="...">
+                    <img src="public/assets/images/Palmeiras_logo.svg.webp.jpg" class="d-block w-100" alt="...">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="public/assets/images/carousel1.jpg" class="d-block w-100" alt="...">
+                    <img src="public/assets/images/Palmeiras_logo.svg.webp.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
 

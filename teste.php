@@ -5,7 +5,7 @@
     require_once __DIR__ ."/controllers/PasswordController.php";
     require_once __DIR__ ."/helpers/token_jwt.php";
 
-
+    echo PasswordController::generateHash("senha123");
 
     // $data = [
     //     "nome" => "Quarto Supremo",

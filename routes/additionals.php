@@ -11,16 +11,22 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
         AdditionalController::getAll($conn);
     }
 }
+
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     AdditionalController::create($conn, $data);
 }
+
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     AdditionalController::update($conn, $id, $data);
 }
+
 elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     if (isset($id)){
@@ -29,11 +35,9 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
         jsonResponse(['message'=>"ID do item é obrigatório"], 400);
     }
 }
+
 else{
-    jsonResponse([
-        'status'=>'erro',
-        'message'=>'Método não permitido'
-    ], 405);
+    jsonResponse(['status'=>'erro','message'=>'Método não permitido'], 405);
 }
 
 ?>

@@ -49,7 +49,8 @@ class ClientModel{
     }
 
     public static function validateClient($conn, $email, $password) {
-        $sql = "SELECT c.id, c.email, c.senha, c.nome, cargos.nome FROM clientes AS c 
+        $sql = "SELECT c.id, c.email, c.senha, c.nome, cargos.nome AS cargo
+        FROM clientes AS c 
         JOIN cargos ON cargos.id = c.cargo_id
         WHERE c.email = ?";
         $stmt = $conn->prepare($sql);

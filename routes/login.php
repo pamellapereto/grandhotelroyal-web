@@ -18,5 +18,4 @@ else{
     jsonResponse(['status'=>'erro','message'=>'Método não permitido'], 405);
 }
 
-
 ?>
