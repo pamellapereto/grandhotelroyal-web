@@ -17,7 +17,7 @@ const routes = {
 //Obtém o caminho atual a parte do nome
 function getPath() {
    //exemplo: obtém "/login"
-   const url = (location.pathname || "").replace("/meusite/", "/").trim();
+   const url = (location.pathname || "").replace("/meupalmeiras/", "/").trim();
    console.log(url);
    //retorna url se começar com "/", se não, retorna "/home" como padrão
    return url && url.startsWith("/") ? url : "/home";      

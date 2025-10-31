@@ -35,5 +35,5 @@ export function clearHotel_Cart() {
 export function getTotalItems() { 
   const items = getCart(); 
   const total = items.reduce((acc, it) => acc + Number(it.subtotal || 0), 0); 
-  return { total, qtde_items: items.length }; 
+  return total;
 } 
