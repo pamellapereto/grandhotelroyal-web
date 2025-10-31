@@ -1,3 +1,4 @@
+import { finishedOrder } from "../api/orderAPI.js";
 import Navbar from "../components/Navbar.js";
 import { clearHotel_Cart, getCart, getTotalItems } from "../store/cartStore.js";
 //Importar componente Footer
@@ -14,10 +15,7 @@ export default function renderCartPage() {
     divRoot.innerHTML = '';
 
     const reservations = getCart();
-    console.log(reservations);
-
     const total = getTotalItems();
-    console.log(total);
 
     const container = document.createElement('div');
     container.className = "container my-4";
@@ -56,7 +54,7 @@ export default function renderCartPage() {
                         ${reservations.map(item =>
                             `
                             <tr>
-                                <td>${item.nome}</td>
+                                <td>${item.nome}</td> 
                                 <td>${item.checkIn}</td>
                                 <td>${item.checkOut}</td>
                                 <td>R$ ${item.subtotal}</td>
@@ -89,4 +87,25 @@ export default function renderCartPage() {
                 renderCartPage();
             });
         }
+
+    const btnFinalizar = document.getElementById("btnFinalizar");
+    if (btnFinalizar) {
+        btnFinalizar.addEventListener("click", async () => {
+            const metodoPagamento = "pix"; //Por enquanto! Assim que testado, colocamos um modal
+            try {
+                const result = await finishedOrder(metodoPagamento, reservations);
+                if (result.ok) {
+                    //Modal de compra efetuado com sucesso!
+                    alert("Compra efetuada com sucesso!");
+                    clearHotel_Cart();
+                    renderCartPage();
+                } else {
+                    alert(result.message || "Erro ao realizar reserva.");
+                }
+            }
+            catch (error) {
+                alert(error?.message || "Falha na comunicação com o servidor");
+            }
+        });
+    }
 }
