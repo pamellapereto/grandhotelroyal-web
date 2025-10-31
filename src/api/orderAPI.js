@@ -1,5 +1,4 @@
 import { getToken } from "./authAPI.js";
-
 export async function finishedOrder(metodoPagamento, reservations) {
     const url = "api/orders/reservation";
     const body = {
@@ -12,7 +11,6 @@ export async function finishedOrder(metodoPagamento, reservations) {
             }
         ))
     };
-    
     const token = getToken?.();
     const res = await fetch(url, {
         method: "POST",
